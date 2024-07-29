@@ -1,0 +1,19 @@
+<div class="h-full text-fontent shadow-lg">
+    <div class="h-full flex flex-col gap-4 bg-anti-flash_white rounded-xl p-4 transition-all" [ngClass]="{
+        'w-72 px-8': isExpanded,
+        'w-28': !isExpanded
+      }">
+        <app-sb-btn (click)="isExpanded = !isExpanded" [showText]="isExpanded" [btnIcon]="'bi bi-list'">
+            Sistema
+        </app-sb-btn>
+        <app-sb-btn (click)="navigateTo('')" [showText]="isExpanded">
+            Restaurant
+        </app-sb-btn>
+        <app-sb-btn (click)="navigateTo('sales')" [showText]="isExpanded">
+            Sales
+        </app-sb-btn>
+        <app-sb-btn (click)="navigateTo('products')" [showText]="isExpanded">
+            Inventory
+        </app-sb-btn>
+    </div>
+</div>
