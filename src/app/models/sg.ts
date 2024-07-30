@@ -22,7 +22,7 @@ export interface MenuItem {
   name: string;
   price: number;
   state: boolean;
-  image: string;
+  image?: string;
   ingredients: Array<Ingredient>;
   discount?: number;
   creationDate: string;

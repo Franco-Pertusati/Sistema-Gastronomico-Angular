@@ -1,28 +1,63 @@
-<div class="h-full w-full bg-anti-flash_white rounded-xl p-8">
-    <h2 class="mb-8 text-6xl font-semibold">Inventory</h2>
-    <div class="flex gap-8 w-full">
-        <div class=" w-full flex gap-8">
-            <div class="groupsCard bg-seasalt rounded-xl shadow-md p-4 mb-4">
-                <h3 class="text-4xl font-medium mb-4">Pintas</h3>
-                <div class="flex flex-col border-t border-borderColor mb-4">
-                    <div class="flex gap-10 text-xl py-2 border-b border-borderColor">
-                        <span>Golden</span>
-                        <span>Price: $3300</span>
-                        <span>Cost: $1200</span>
+<div class="h-full max-h-full bg-anti-flash_white rounded-xl p-8">
+    <div class="mb-8 flex gap-8">
+        <h2 class="text-6xl font-medium">Inventory</h2>
+        <app-btn class="my-auto">
+            <i class="bi bi-plus-lg"></i>
+            <span>Create product</span>
+        </app-btn>
+    </div>
+    <div class="h-full gap-8 w-full overflow-x-scroll">
+        <div class="w-full flex gap-8">
+            @for (category of categories(); track category; let i = $index;) {
+            <div class="groupsCard bg-seasalt rounded-xl shadow-md p-8 mb-4 flex-shrink-0 w-full h-fit">
+                <h3 class="text-4xl font-medium mb-8">{{ category.name }}</h3>
+                @if (category.menuItems.length > 0) {
+                <div class="flex flex-col border-t border-mainColor">
+                    @for (item of category.menuItems; track $index) {
+                    <div class="menuItem text-lg">
+                        <div>
+                            {{ item.name }}
+                        </div>
+                        <div>
+                            {{item.price}}
+                        </div>
+                        <div>
+                            {{item.state}}
+                        </div>
                         <button>
                             <i class="bi bi-three-dots-vertical"></i>
                         </button>
                     </div>
+                    }
                 </div>
-                <app-btn>
-                    <i class="bi bi-plus-lg"></i>
-                    <span>New product</span>
-                </app-btn>
+                }
+                <div class="text-4xl flex gap-4 mt-8">
+                    <app-btn>
+                        <i class="bi bi-gear"></i>
+                        <span>Options</span>
+                    </app-btn>
+                    <app-btn>
+                        <i class="bi bi-ban"></i>
+                        <span>Disable</span>
+                    </app-btn>
+                </div>
             </div>
-            <button class="bg-seasalt rounded-xl shadow-md p-4 h-fit flex gap-4 text-xl font-medium">
-                <i class="bi bi-plus-lg"></i>
-                <span>Add new category</span> 
-            </button>
+            }
+            <div class="bg-seasalt rounded-xl shadow-md h-fit flex gap-4 text-xl font-medium">
+                @if (!isCreatingCategory) {
+                <button class="p-4 flex gap-4" (click)="isCreatingCategory = !isCreatingCategory">
+                    <i class="bi bi-plus-lg"></i>
+                    <span>Add new category</span>
+                </button>
+                } @else {
+                <div class="p-8 flex flex-col gap-4 groupsCard">
+                    <input type="text" placeholder="Category name" (keydown.enter)="createCategory($event)"
+                        class="bg-seasalt text-4xl font-medium border-b-2 mb-4 border-mainColor focus:outline-none">
+                    <app-btn>Create</app-btn>
+                </div>
+                }
+            </div>
+
         </div>
     </div>
 </div>

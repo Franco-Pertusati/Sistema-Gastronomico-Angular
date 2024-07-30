@@ -38,10 +38,10 @@ module.exports = {
         DEFAULT: "#212529",
       },
       mainColor: {
-        DEFAULT: "#bce784",
+        DEFAULT: "#4285f4",
       },
       borderColor: {
-        DEFAULT: "#bce78471",
+        DEFAULT: "#4285f471",
       },
       disabled: {
         DEFAULT: "#E63946"
